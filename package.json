@@ -1,12 +1,19 @@
 {
-  "name": "bloum",
+  "name": "bloum.id",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "prebuild": "npm run clean && echo \"\\x1b[92mAll clean ✨\\x1b[0m\"",
     "build": "next build",
+    "clean": "rm -rf ./node_modules/.cache .next",
+    "dev": "next dev",
+    "format": "prettier --check .prettierignore .",
+    "format:fix": "prettier --write .prettierignore .",
+    "lint": "next lint",
+    "preview": "next build && next start",
     "start": "next start",
-    "lint": "next lint"
+    "static-tests": "npm run lint && npm run format && npm run typecheck && echo \"\\x1b[92mAll static test passed ✨\\x1b[0m\"",
+    "typecheck": "tsc"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.0",
@@ -26,7 +33,10 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
+    "eslint-config-prettier": "^8.8.0",
     "postcss": "^8",
+    "prettier": "^2.8.8",
+    "prettier-plugin-tailwindcss": "^0.1.13",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }
